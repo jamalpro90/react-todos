@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./App.scss";
+import "./App.css";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 import EditProvider from "./context";
