@@ -22,7 +22,7 @@ body {
   align-items: center;
   min-height: 100vh;
   background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
-  overflow: hidden;
+  // overflow: hidden;
   color: white;
 }
 
@@ -61,8 +61,9 @@ body {
   border-radius: 50%;
   filter: drop-shadow(0 0 6px currentColor);
   transform: translate3d(104em, 0, 0);
-  animation: fall var(--fall-duration) var(--fall-delay) linear infinite, tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite;
-  
+  animation: fall var(--fall-duration) var(--fall-delay) linear infinite,
+    tail-fade var(--tail-fade-duration) var(--fall-delay) ease-out infinite;
+
   @include sp-layout {
     // For mobile performance, tail-fade animation will be removed QAQ
     animation: fall var(--fall-duration) var(--fall-delay) linear infinite;
@@ -77,9 +78,10 @@ body {
     }
   }
 
-  &::before, &::after {
+  &::before,
+  &::after {
     position: absolute;
-    content: '';
+    content: "";
     top: 0;
     left: calc(var(--star-width) / -2);
     width: var(--star-width);
@@ -105,12 +107,14 @@ body {
 }
 
 @keyframes tail-fade {
-  0%, 50% {
+  0%,
+  50% {
     width: var(--star-tail-length);
     opacity: 1;
   }
 
-  70%, 80% {
+  70%,
+  80% {
     width: 0;
     opacity: 0.4;
   }
@@ -129,7 +133,6 @@ body {
 
 header {
   font-size: 1.5rem;
-  text-align: center;
 }
 
 header,
@@ -138,7 +141,9 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: scale(0.9);
 }
+
 form input,
 form button {
   padding: 0.5rem;
@@ -146,6 +151,43 @@ form button {
   border: none;
   background: white;
   outline: none;
+}
+
+form input {
+  padding-left: 20px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+form .todo-button {
+  max-width: 40px;
+  padding-right: 40px;
+}
+
+// Orange
+.orange {
+  color: #ff6f47;
+}
+
+.back-orange:hover {
+  background-color: #ff6f47;
+}
+
+.back-orange:hover .orange {
+  color: white;
+}
+
+// Blue
+.blue {
+  color: #0b80d4;
+}
+
+.back-blue:hover {
+  background-color: #0b80d4;
+}
+
+.back-blue:hover .blue {
+  color: white;
 }
 
 @media (max-width: 700px) {
@@ -168,11 +210,15 @@ form button {
   background: #f7fffe;
   cursor: pointer;
   transition: all 0.3s ease;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
+
 form button:hover {
   background: #ff6f47;
   color: white;
 }
+
 .todo-container {
   display: flex;
   justify-content: center;
@@ -180,12 +226,17 @@ form button:hover {
 }
 
 .todo-list {
-  min-width: 30%;
+  width: 100%;
+  height: 100%;
   list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .todo {
-  margin: 0.5rem;
+  width: 40%;
+  margin: 0.9rem;
   background: white;
   font-size: 1.5rem;
   color: black;
@@ -193,16 +244,34 @@ form button:hover {
   justify-content: space-between;
   align-items: center;
   transition: all 1s ease;
+  border-radius: 5px;
 }
+
+@media (max-width: 700px) {
+  .todo {
+    width: 70%;
+    transform: scale(0.8);
+    margin: 4px 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .todo {
+    width: 100%;
+  }
+}
+
 .filter-todo {
   padding: 1rem;
 }
 .todo li {
   flex: 1;
+  font-size: 20px;
 }
 
 .trash-btn,
-.complete-btn {
+.complete-btn,
+.edit-btn {
   background: #ff6f47;
   color: white;
   border: none;
@@ -210,12 +279,31 @@ form button:hover {
   cursor: pointer;
   font-size: 1rem;
 }
+.trash-btn {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
 .complete-btn {
   background: rgb(11, 212, 162);
 }
+.edit-btn {
+  background: #0b80d4;
+}
+
+.back-gray {
+  background-color: gray;
+}
+
 .todo-item {
   padding: 0rem 0.5rem;
   overflow: auto;
+}
+
+// timestamp
+.timestamp {
+  padding: 0 7px;
+  font-size: 12px;
+  color: #999;
 }
 
 .fa-trash,
@@ -250,6 +338,7 @@ select {
   margin: 1rem;
   position: relative;
   overflow: hidden;
+  border-radius: 5px;
 }
 select {
   color: #ff6f47;
