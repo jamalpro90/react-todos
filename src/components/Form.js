@@ -9,9 +9,9 @@ const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
   useEffect(() => {
     if (editMode.mode === true) {
       inputRef.current.focus();
-      inputRef.current.value = editMode.value.text;
+      setInputText(editMode.value.text);
     }
-  }, [editMode]);
+  }, [editMode, setInputText]);
 
   const inputTextHandler = e => {
     setInputText(e.target.value);
@@ -20,11 +20,7 @@ const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
   const submitTodoHandler = e => {
     e.preventDefault();
 
-    // Jika input kosong maka Alert
-    if (inputText === "") {
-      alert("Text Something");
-      // Jika edit mode true maka edit todo
-    } else if (editMode.mode === true) {
+    if (editMode.mode === true) {
       setTodos(
         todos.filter(todo =>
           todo.id === editMode.value.id ? (todo.text = inputText) : todo.text
@@ -34,6 +30,10 @@ const Form = ({ inputText, setInputText, todos, setTodos, setStatus }) => {
       setInputText("");
       // Jika edit mode false maka tambah todo biasa
     } else {
+      if (inputText === "") {
+        return alert("Text Something");
+      }
+
       const randomId = Math.floor(Math.random() * 100000);
       setTodos([
         ...todos,
